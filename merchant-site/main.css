@@ -105,6 +105,23 @@ div.section > div > input {
   border: 1px solid orange;
 }
 
+.box-payment {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid rgba(214, 214, 214, 0.76);
+}
+
+.box-payment .dropdown,
+.box-payment .dropdown .btn,
+.box-payment .dropdown .dropdown-menu {
+  width: 100%;
+}
+
+.dropdown > div {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 426px) {
   .container {
     margin-top: 0px !important;

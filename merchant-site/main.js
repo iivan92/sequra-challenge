@@ -47,7 +47,12 @@ const render = () => {
   $("#product-price").text(`${price}€`);
   $("#total-price").text(`${totalPrice}€`);
 
-  fetchAgreement(totalPrice).then((value) => {
-    console.log("🚀 ~ file: main.js ~ line 11 ~ init ~ value", value);
+  fetchAgreement(totalPrice * 100).then((data) => {
+    $(".dropdown .dropdown-menu").empty();
+    data.forEach((item) => {
+      $(".dropdown .dropdown-menu").append(
+        `<li><a href="#">${item.instalment_count} cuotas de ${item.instalment_total.string}/mes</a></li>`
+      );
+    });
   });
 };
