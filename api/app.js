@@ -6,13 +6,16 @@ const creditAgreement = require("./credit_agreement_calculator");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 
 app.get("/credit_agreements", (req, res) => {
   const totalWithTax = parseInt(req.query.totalWithTax, 10);
