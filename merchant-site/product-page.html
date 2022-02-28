@@ -103,12 +103,57 @@
               Agregar al carro
             </button>
 
-            <!-- NEW BOX FOR PAYMENT PROPOSE -->
+            <!-- NEW BOX FOR PAYMENT CREDIT -->
             <div class="box-payment">
               <div class="dropdown">
                 <div>
                   <p>Págalo en</p>
-                  <a href="#">más info</a>
+                  <a data-toggle="modal" href="#modalInfo">más info</a>
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="modalInfo"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="modalInfoLabel"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title" id="modalInfoLabel">
+                            Fracciona tu pago - SeQura
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            1. Eliges "Fracciona tu pago" al realizar tu pedido
+                            y paga sólo la primera cuota.
+                          </p>
+                          <p>2. Recibes tu pedido.</p>
+                          <p>
+                            3. El resto de pagos se cargarán automaticamente a
+                            tu tarjeta.
+                          </p>
+
+                          <p>¡Así de simple!</p>
+                          <p class="fee_info">
+                            Además, en el importe mastrado ya se incluye la
+                            cuota única mensual de
+                            <b>3,00 €/mes</b>, por lo que no tendrás ninguna
+                            sorpresa.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <button
                   class="btn btn-default dropdown-toggle"

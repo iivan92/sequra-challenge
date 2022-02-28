@@ -6,6 +6,7 @@ import { formatTextDropdownItem } from "./utils/format.js";
 let price = 399.99;
 let qty = 1;
 let totalPrice;
+let instalment_fee;
 
 $(document).ready(function () {
   init();
@@ -46,6 +47,15 @@ const initComponents = () => {
     qty++;
     render();
   });
+
+  $("#modalInfo").on("show.bs.modal", () => {
+    if (instalment_fee) {
+      $("#modalInfo p.fee_info").css("display", "block");
+      $("#modalInfo p.fee_info b").text(instalment_fee);
+    } else {
+      $("#modalInfo p.fee_info").css("display", "none");
+    }
+  });
 };
 
 const render = () => {
@@ -58,7 +68,7 @@ const render = () => {
     $(".dropdown .dropdown-menu").empty();
     data.forEach((item) => {
       const instalment = item.instalment_count || 0;
-      const instalment_total = `${item.instalment_total?.string || "0 €"}`;
+      const instalment_total = item.instalment_total?.string || "0 €";
 
       const text = formatTextDropdownItem(instalment, instalment_total);
       $(".dropdown .dropdown-menu").append(
@@ -68,9 +78,11 @@ const render = () => {
         "click",
         (event) => {
           $(".dropdown button span.placeholder").text(event.target.innerText);
+          instalment_fee = item.instalment_fee?.string || "0 €";
         }
       );
     });
     $(".dropdown button span.placeholder").text(DROPDOWN_PLACEHOLDER);
+    instalment_fee = undefined;
   });
 };
