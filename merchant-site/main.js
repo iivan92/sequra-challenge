@@ -1,5 +1,7 @@
 import { fetchAgreement } from "./api/payment.js";
 import { templateDropdownItem } from "./templates/dropdown_tpl.js";
+import { DROPDOWN_PLACEHOLDER } from "./utils/constants.js";
+import { formatTextDropdownItem } from "./utils/format.js";
 
 let price = 399.99;
 let qty = 1;
@@ -25,8 +27,12 @@ const initComponents = () => {
 
     $("." + clase).removeClass("active");
     $(this).addClass("active");
-    price = parseFloat($(this).attr("data-price"));
-    render();
+
+    const dataPrice = $(this).attr("data-price");
+    if (dataPrice) {
+      price = parseFloat(dataPrice);
+      render();
+    }
   });
 
   $(".btn-minus").on("click", function () {
@@ -58,9 +64,12 @@ const render = () => {
       $(".dropdown .dropdown-menu").append(
         templateDropdownItem(instalment, text)
       );
-      $(`.dropdown .dropdown-menu li#item-${instalment}`).on("click", () => {
-        $(".dropdown button span.placeholder").text(text);
-      });
+      $(`.dropdown .dropdown-menu li#item-${instalment}`).on(
+        "click",
+        (event) => {
+          $(".dropdown button span.placeholder").text(event.target.innerText);
+        }
+      );
     });
     $(".dropdown button span.placeholder").text(DROPDOWN_PLACEHOLDER);
   });

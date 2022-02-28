@@ -13,7 +13,7 @@
   margin-top: 20px;
 }
 
-.menu-items ul > li {
+.menu-items > li {
   margin-right: 25px;
   font-weight: lighter;
   cursor: pointer;
@@ -117,7 +117,7 @@ div.section > div > input {
   width: 100%;
 }
 
-.dropdown > div {
+.box-payment .dropdown > div {
   display: flex;
   justify-content: space-between;
 }
