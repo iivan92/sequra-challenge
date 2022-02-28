@@ -2,6 +2,7 @@ import { fetchAgreement } from "./api/payment.js";
 import { templateDropdownItem } from "./templates/dropdown_tpl.js";
 import { DROPDOWN_PLACEHOLDER } from "./utils/constants.js";
 import { formatTextDropdownItem } from "./utils/format.js";
+import { trackEvent } from "./utils/tracking.js";
 
 let price = 399.99;
 let qty = 1;
@@ -21,19 +22,26 @@ const initComponents = () => {
   $("ul.menu-items > li").on("click", function () {
     $("ul.menu-items > li").removeClass("active");
     $(this).addClass("active");
+    trackEvent("info", "tab_changed");
   });
 
-  $(".attr,.attr2").on("click", function () {
+  $(".attr").on("click", function () {
+    const clase = $(this).attr("class");
+
+    $("." + clase).removeClass("active");
+    $(this).addClass("active");
+    trackEvent("product", "color_changed");
+  });
+
+  $(".attr2").on("click", function () {
     const clase = $(this).attr("class");
 
     $("." + clase).removeClass("active");
     $(this).addClass("active");
 
-    const dataPrice = $(this).attr("data-price");
-    if (dataPrice) {
-      price = parseFloat(dataPrice);
-      render();
-    }
+    price = parseFloat($(this).attr("data-price"));
+    render();
+    trackEvent("product", "capacity_changed");
   });
 
   $(".btn-minus").on("click", function () {
@@ -41,11 +49,13 @@ const initComponents = () => {
       qty--;
     }
     render();
+    trackEvent("product", "qty_changed");
   });
 
   $(".btn-plus").on("click", function () {
     qty++;
     render();
+    trackEvent("product", "qty_changed");
   });
 
   $("#modalInfo").on("show.bs.modal", () => {
@@ -55,6 +65,7 @@ const initComponents = () => {
     } else {
       $("#modalInfo p.fee_info").css("display", "none");
     }
+    trackEvent("checkout", "modal_opened");
   });
 };
 
@@ -79,6 +90,9 @@ const render = () => {
         (event) => {
           $(".dropdown button span.placeholder").text(event.target.innerText);
           instalment_fee = item.instalment_fee?.string || "0 €";
+          trackEvent("checkout", "instalment_changed", {
+            selectedInstalment: instalment,
+          });
         }
       );
     });
