@@ -1,5 +1,4 @@
-const BASE_SERVER = "http://localhost";
-const PORT = 8081;
+import { BASE_SERVER, PORT } from "../utils/constants.js";
 
 export const fetchAgreement = async (price) => {
   const options = {
