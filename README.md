@@ -10,22 +10,44 @@ The marketing team is now asking you to make a prototype of a widget that displa
 
 We expect you to:
 
-* Create the prototype for the mockups that the marketing team has given you (`mockups.pdf`)
-  * Integrate the prototype with SeQura `CreditAgreementAPI` (`docs/credit_agreement_api.md`) to fetch financing information for a given product value.
-  * Integrate the prototype with SeQura `EventsAPI` (`docs/events_api.md`) triggering an event for each shopper interaction.
-* Integrate the prototype in the merchant sample site (`merchant-site/product-page.html`) so that every time the product price changes the financing value is updated.
-* Write up a paragraph with the way you would distribute this prototype to all our merchants.
+- Create the prototype for the mockups that the marketing team has given you (`mockups.pdf`)
+  - Integrate the prototype with SeQura `CreditAgreementAPI` (`docs/credit_agreement_api.md`) to fetch financing information for a given product value.
+  - Integrate the prototype with SeQura `EventsAPI` (`docs/events_api.md`) triggering an event for each shopper interaction.
+- Integrate the prototype in the merchant sample site (`merchant-site/product-page.html`) so that every time the product price changes the financing value is updated.
+- Write up a paragraph with the way you would distribute this prototype to all our merchants.
 
 ## Instructions
 
-* Please read carefully the challenge and if you have any doubt or need extra info please don't hesitate to ask us before starting.
-* You shouldn't spend more than 3h on the challenge.
-* You should consider this code ready for production as it were a PR to be reviewed by a colleague. Also commit as if it were a real assignment.
-* Design, test, develop and document the code. It should be a performant, clean and well structured solution. **Then send us a link or a zip with a git repo**.
-* Remember you're dealing with resources that will be loaded on merchant's sites, so you should be careful with dependencies, styles and code clashing.
-* Create a README explaining how to setup and run your solution and a short explanation of your technical choices, tradeoffs, ...
-* You don't need to finish. We value quality over feature-completeness. If you have to leave things aside you can mention them on the README explaining why and how you would resolve them.
-* You can code the solution in a language or framework of your choice.
-* In order to use SeQura mocked APIs you need to start the environment found in folder `api`
+- Please read carefully the challenge and if you have any doubt or need extra info please don't hesitate to ask us before starting.
+- You shouldn't spend more than 3h on the challenge.
+- You should consider this code ready for production as it were a PR to be reviewed by a colleague. Also commit as if it were a real assignment.
+- Design, test, develop and document the code. It should be a performant, clean and well structured solution. **Then send us a link or a zip with a git repo**.
+- Remember you're dealing with resources that will be loaded on merchant's sites, so you should be careful with dependencies, styles and code clashing.
+- Create a README explaining how to setup and run your solution and a short explanation of your technical choices, tradeoffs, ...
+- You don't need to finish. We value quality over feature-completeness. If you have to leave things aside you can mention them on the README explaining why and how you would resolve them.
+- You can code the solution in a language or framework of your choice.
+- In order to use SeQura mocked APIs you need to start the environment found in folder `api`
 
 **HAPPY CODING!!**
+
+# Ivan - Comments
+
+I decided to not use any framework and implement the solution with jquery. I just created a simple structure of folders to split the code for responsability (api/templates/utils).
+
+I implemented all the features required with some improvements in the layout in order to show all the information I considered important.
+
+NOTE: I will create the solution with React in order to set the page more dynamic with different components in order we can use it for all the merchant. In that way, we can reuse components and logic as the tracking methods.
+
+## Instructions
+
+- Run API first (default port: 8081):
+
+`node api/app.js`
+
+- Run Front (I use in mac http-server):
+
+`http-server`
+
+- Open browser:
+
+`http://localhost:8080/merchant-site/product-page.html`
