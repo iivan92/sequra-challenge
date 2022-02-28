@@ -41,7 +41,7 @@ const initComponents = () => {
 
     price = parseFloat($(this).attr("data-price"));
     render();
-    trackEvent("product", "capacity_changed");
+    trackEvent("product", "capacity_changed", { capacity: $(this).text() });
   });
 
   $(".btn-minus").on("click", function () {
@@ -49,13 +49,13 @@ const initComponents = () => {
       qty--;
     }
     render();
-    trackEvent("product", "qty_changed");
+    trackEvent("product", "qty_changed", { quantity: qty });
   });
 
   $(".btn-plus").on("click", function () {
     qty++;
     render();
-    trackEvent("product", "qty_changed");
+    trackEvent("product", "qty_changed", { quantity: qty });
   });
 
   $("#modalInfo").on("show.bs.modal", () => {
