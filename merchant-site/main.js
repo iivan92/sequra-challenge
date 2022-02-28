@@ -1,4 +1,5 @@
 import { fetchAgreement } from "./api/payment.js";
+import { templateDropdownItem } from "./templates/dropdown_tpl.js";
 
 let price = 399.99;
 let qty = 1;
@@ -50,9 +51,17 @@ const render = () => {
   fetchAgreement(totalPrice * 100).then((data) => {
     $(".dropdown .dropdown-menu").empty();
     data.forEach((item) => {
+      const instalment = item.instalment_count || 0;
+      const instalment_total = `${item.instalment_total?.string || "0 €"}`;
+
+      const text = formatTextDropdownItem(instalment, instalment_total);
       $(".dropdown .dropdown-menu").append(
-        `<li><a href="#">${item.instalment_count} cuotas de ${item.instalment_total.string}/mes</a></li>`
+        templateDropdownItem(instalment, text)
       );
+      $(`.dropdown .dropdown-menu li#item-${instalment}`).on("click", () => {
+        $(".dropdown button span.placeholder").text(text);
+      });
     });
+    $(".dropdown button span.placeholder").text(DROPDOWN_PLACEHOLDER);
   });
 };
